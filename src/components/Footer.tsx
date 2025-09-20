@@ -2,10 +2,8 @@ import React from 'react';
 import { Instagram, Mail } from 'lucide-react';
 import CallToActionButton from './CallToActionButton'; // Import the component
 import { Link } from 'react-router-dom';
-
 const Footer: React.FC = () => {
-  return (
-    <footer className="bg-slate-800 text-slate-300 py-12">
+  return <footer className="bg-slate-800 text-slate-300 py-12">
       <div className="container mx-auto px-6 text-center">
         <h3 className="text-2xl font-heading mb-4 text-white">Ready to Get Started?</h3>
         <p className="mb-6 max-w-2xl mx-auto">
@@ -34,7 +32,7 @@ const Footer: React.FC = () => {
           </a>
         </div>
         <div className="text-sm text-slate-400 space-y-1">
-          <p>Email: info@thementallab.com</p>
+          <p>Email: info@mentallab.net</p>
           <p>Serving families with mental performance coaching for young athletes and their parents</p>
         </div>
         <p className="text-sm text-slate-400 mt-2">
@@ -44,8 +42,6 @@ const Footer: React.FC = () => {
           {/* <Link to="/terms-of-service" className="ml-4 hover:underline">Terms of Service</Link> */}
         </p>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
