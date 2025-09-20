@@ -33,9 +33,10 @@ const Footer: React.FC = () => {
             <span className="sr-only">Email</span>
           </a>
         </div>
-        <p className="text-sm text-slate-400">
-          Contact: info@thementallab.com
-        </p>
+        <div className="text-sm text-slate-400 space-y-1">
+          <p>Email: info@thementallab.com</p>
+          <p>Serving families with mental performance coaching for young athletes and their parents</p>
+        </div>
         <p className="text-sm text-slate-400 mt-2">
           &copy; {new Date().getFullYear()} The Mental Lab. All rights reserved.
           {/* Placeholder for Legal and Privacy Info */}

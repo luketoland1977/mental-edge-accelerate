@@ -79,12 +79,12 @@ const MeetCoachCPage: React.FC = () => {
         </TabsContent>
 
         <TabsContent value="bio" className="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold font-heading text-brand-blue mb-4">Our Story: The Journey Behind The Mental Lab</h2>
+          <h2 className="text-2xl font-bold font-heading text-brand-blue mb-4">About The Mental Lab: Our Journey</h2>
           <p className="text-slate-700 mb-4 leading-relaxed">
             The Mental Lab was founded by a coach who has been immersed in the world of sports for over 20 years — as a college basketball player, assistant high school coach, and middle school head coach.
           </p>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            Throughout our coaching history, we saw how mental blocks often stood between athletes and their potential. Our team has coached:
+            Throughout our coaching history, we saw how mental blocks often stood between athletes and their potential. We've coached:
           </p>
           <ul className="list-disc list-inside space-y-2 text-slate-700 mb-4 pl-4">
             <li>Boys' basketball teams to three straight championship appearances</li>
@@ -92,10 +92,10 @@ const MeetCoachCPage: React.FC = () => {
             <li>Middle schoolers to multiple finals in just three years</li>
           </ul>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            But it was during these moments of competition that we realized something deeper — the need to coach the mental game just as much as the physical one.
+            But it was during these moments of competition that we realized something deeper — the need to coach the mental game just as much as the physical one. <strong>And we noticed that the athletes who thrived had parents who knew how to support, not pressure.</strong>
           </p>
           <p className="text-slate-700 leading-relaxed">
-            That passion led to earning a Master's in Sport Psychology at the prestigious John F. Kennedy University (now National University). Since then, The Mental Lab has helped athletes in sports like basketball, golf, tennis, baseball, and softball develop the mindset they need to thrive.
+            That passion led to earning a Master's in Sport Psychology at the prestigious John F. Kennedy University (now National University). Since then, we've helped athletes in sports like basketball, golf, tennis, baseball, and softball develop the mindset they need to thrive — <strong>while teaching their parents how to be part of the solution.</strong>
           </p>
           {ctaButtons}
         </TabsContent>
@@ -103,13 +103,13 @@ const MeetCoachCPage: React.FC = () => {
         <TabsContent value="education" className="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold font-heading text-brand-blue mb-4">Credentials & Experience</h2>
            <ul className="list-none space-y-4 text-slate-700 mb-6">
-            <li className="flex items-start"><GraduationCap className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Master's in Sport Psychology,</strong> John F. Kennedy University (now National University)</span></li>
-            <li className="flex items-start"><GraduationCap className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">B.S. in Physical Education & Health,</strong> University of Hawaii</span></li>
-            <li className="flex items-start"><Users className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">20+ years of coaching experience</strong> (middle school, high school, college)</span></li>
-            <li className="flex items-start"><BookOpen className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Mental performance work</strong> with athletes, coaches, and parents across multiple sports</span></li>
+            <li className="flex items-start"><GraduationCap className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Master's in Sport Psychology</strong> - John F. Kennedy University (now National University)</span></li>
+            <li className="flex items-start"><Users className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">20+ Years Coaching Experience:</strong> College player, high school assistant, middle school head coach</span></li>
+            <li className="flex items-start"><Award className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Specialization:</strong> Youth athlete mental performance & family systems integration</span></li>
+            <li className="flex items-start"><BookOpen className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Sports Experience:</strong> Basketball, golf, tennis, baseball, softball, and more</span></li>
           </ul>
           <p className="text-slate-700 leading-relaxed">
-            After two decades on the court, The Mental Lab was created with a full focus on mental performance coaching. It's time for athletes to treat their mind like a muscle — one that needs training, conditioning, and care.
+            After two decades on the court, The Mental Lab was created to help families build mental toughness together, creating athletes who perform their best when it matters most.
           </p>
           {ctaButtons}
         </TabsContent>
