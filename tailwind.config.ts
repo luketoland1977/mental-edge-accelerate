@@ -33,9 +33,10 @@ export default {
 					DEFAULT: 'hsl(var(--primary))', // Maintained for shadcn compatibility
 					foreground: 'hsl(var(--primary-foreground))'
 				},
-        'brand-blue': '#2563eb', // blue-600
-        'brand-blue-dark': '#1d4ed8', // blue-700
-        'brand-gray': '#6b7280', // gray-500
+        'brand-blue': '#1e3c72', /* Main Blue */
+        'brand-blue-dark': '#2a5298', /* Secondary Blue */
+        'brand-orange': '#ff6b35', /* Orange Accent */
+        'brand-gray': '#6b7280', /* Keeping existing gray */
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
