@@ -19,16 +19,16 @@ const Navbar: React.FC = () => {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-4">
-          <Link to="/" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium">Home</Link>
-          <Link to="/meet-coach-c" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium">About Us</Link>
-          <Link to="/services" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium">Coaching Services & Booking</Link>
-          <Link to="/questionnaire" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium">Questionnaire</Link>
+          <Link to="/" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105">Home</Link>
+          <Link to="/meet-coach-c" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105">About Us</Link>
+          <Link to="/services" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105">Coaching Services & Booking</Link>
+          <Link to="/questionnaire" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105">Questionnaire</Link>
         </div>
 
         {/* Hamburger Menu Button */}
         <button 
           onClick={toggleMenu}
-          className="md:hidden text-gray-700 hover:text-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue"
+          className="md:hidden text-gray-700 hover:text-brand-blue focus:outline-none focus:ring-2 focus:ring-brand-blue transition-all duration-300 hover:scale-110"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -40,28 +40,28 @@ const Navbar: React.FC = () => {
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link 
               to="/" 
-              className="block px-3 py-2 text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md text-base font-medium"
+              className="block px-3 py-2 text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md text-base font-medium transition-all duration-300"
               onClick={() => setIsOpen(false)}
             >
               Home
             </Link>
             <Link 
               to="/meet-coach-c" 
-              className="block px-3 py-2 text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md text-base font-medium"
+              className="block px-3 py-2 text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md text-base font-medium transition-all duration-300"
               onClick={() => setIsOpen(false)}
             >
               About Us
             </Link>
             <Link 
               to="/services" 
-              className="block px-3 py-2 text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md text-base font-medium"
+              className="block px-3 py-2 text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md text-base font-medium transition-all duration-300"
               onClick={() => setIsOpen(false)}
             >
               Coaching Services & Booking
             </Link>
             <Link 
               to="/questionnaire" 
-              className="block px-3 py-2 text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md text-base font-medium"
+              className="block px-3 py-2 text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md text-base font-medium transition-all duration-300"
               onClick={() => setIsOpen(false)}
             >
               Questionnaire
