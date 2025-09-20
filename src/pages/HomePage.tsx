@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
             Elite performance isn’t just physical — it starts with the mind. Whether you're an athlete, coach, or team, I help you build the mental toughness to thrive under pressure. In sport and in life, your <span className="font-semibold text-yellow-300">Effort</span>, <span className="font-semibold text-yellow-300">Thought</span>, and <span className="font-semibold text-yellow-300">Attitude</span> determine how fast you reach your peak.
           </p>
           <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
-            With Coach C, you'll master your mindset and gain the mental edge — arriving at top performance faster than the competition.
+            With The Mental Lab, you'll master your mindset and gain the mental edge — arriving at top performance faster than the competition.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
             <CallToActionButton to="/services#booking" variant="primary" className="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-slate-800">

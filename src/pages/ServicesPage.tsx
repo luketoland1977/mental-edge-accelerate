@@ -81,7 +81,7 @@ const ServicesPage: React.FC = () => {
       <section className="bg-slate-100 p-8 rounded-lg shadow text-center">
         <h2 className="text-2xl font-bold font-heading text-slate-800 mb-4">Secure Booking & Calendar Sync</h2>
         <p className="text-slate-700 mb-4 max-w-xl mx-auto">
-          I use professional scheduling tools like Calendly to ensure a seamless booking experience. These tools integrate directly with Google Calendar, handle payments securely (via Stripe/PayPal for packages), send automated reminders, and manage time zone adjustments.
+          We use professional scheduling tools like Calendly to ensure a seamless booking experience. These tools integrate directly with Google Calendar, handle payments securely (via Stripe/PayPal for packages), send automated reminders, and manage time zone adjustments.
         </p>
         <p className="text-slate-700 font-semibold">
           To set up your first <span className="text-brand-blue">Free Consultation</span>, please click the button below.
