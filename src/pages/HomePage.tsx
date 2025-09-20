@@ -1,11 +1,20 @@
 import React from 'react';
 import CallToActionButton from '@/components/CallToActionButton';
+import neuralBackground from '@/assets/neural-background.jpg';
 
 const HomePage: React.FC = () => {
   return (
     <div className="bg-slate-50">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-br from-sky-500 to-indigo-600 text-white">
+      <section 
+        className="py-20 md:py-32 relative text-white overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(14, 165, 233, 0.8), rgba(79, 70, 229, 0.8)), url(${neuralBackground})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-4xl md:text-6xl font-bold font-heading mb-6">
             We Train Families, Not Just Athletes
