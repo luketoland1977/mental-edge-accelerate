@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
         <div className="space-x-4">
           <Link to="/" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium">Home</Link>
           <Link to="/meet-coach-c" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium">About Us</Link>
-          
+          <Link to="/services" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium">Coaching Services & Booking</Link>
           <Link to="/questionnaire" className="text-gray-700 hover:text-brand-blue px-3 py-2 rounded-md text-sm font-medium">Questionnaire</Link>
         </div>
       </div>
