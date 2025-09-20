@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CallToActionButton from '@/components/CallToActionButton';
-import { Award, BookOpen, GraduationCap, Users, Zap } from 'lucide-react'; // Example icons
+import { Award, BookOpen, GraduationCap, Users, Zap, Target, Medal, Trophy } from 'lucide-react';
 
 const MeetCoachCPage: React.FC = () => {
   const ctaButtons = (
@@ -35,9 +35,9 @@ const MeetCoachCPage: React.FC = () => {
             In our coaching, we focus on the essential skills every athlete needs to develop a competitive mental edge:
           </p>
           <ul className="list-none space-y-4 mb-6">
-            <li className="flex items-start"><Zap className="w-6 h-6 text-yellow-500 mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Focus:</strong> Training the mind to stay sharp, even in high-pressure situations.</span></li>
-            <li className="flex items-start"><Award className="w-6 h-6 text-yellow-500 mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Resilience:</strong> Bouncing back from failure, making it a stepping stone for success.</span></li>
-            <li className="flex items-start"><Zap className="w-6 h-6 text-yellow-500 mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Energy Management:</strong> Converting nervousness and anxiety into performance-enhancing energy.</span></li>
+            <li className="flex items-start"><Target className="w-6 h-6 text-orange-500 mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Focus:</strong> Training the mind to stay sharp, even in high-pressure situations.</span></li>
+            <li className="flex items-start"><Medal className="w-6 h-6 text-orange-500 mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Resilience:</strong> Bouncing back from failure, making it a stepping stone for success.</span></li>
+            <li className="flex items-start"><Zap className="w-6 h-6 text-orange-500 mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Energy Management:</strong> Converting nervousness and anxiety into performance-enhancing energy.</span></li>
           </ul>
           <p className="text-slate-700 mb-4 leading-relaxed">
             These are skills we've been taught, but more importantly, they are skills we've applied on the field with athletes who have gone on to achieve success. Our goal is to help athletes master their mental game, so they can reach their fullest potential.
@@ -104,9 +104,9 @@ const MeetCoachCPage: React.FC = () => {
           <h2 className="text-2xl font-bold font-heading text-brand-blue mb-4">Credentials & Experience</h2>
            <ul className="list-none space-y-4 text-slate-700 mb-6">
             <li className="flex items-start"><GraduationCap className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Master's in Sport Psychology</strong> - John F. Kennedy University (now National University)</span></li>
-            <li className="flex items-start"><Users className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">20+ Years Coaching Experience:</strong> College player, high school assistant, middle school head coach</span></li>
-            <li className="flex items-start"><Award className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Specialization:</strong> Youth athlete mental performance & family systems integration</span></li>
-            <li className="flex items-start"><BookOpen className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Sports Experience:</strong> Basketball, golf, tennis, baseball, softball, and more</span></li>
+            <li className="flex items-start"><Trophy className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">20+ Years Coaching Experience:</strong> College player, high school assistant, middle school head coach</span></li>
+            <li className="flex items-start"><Target className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Specialization:</strong> Youth athlete mental performance & family systems integration</span></li>
+            <li className="flex items-start"><Medal className="w-6 h-6 text-brand-blue mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Sports Experience:</strong> Basketball, golf, tennis, baseball, softball, and more</span></li>
           </ul>
           <p className="text-slate-700 leading-relaxed">
             After two decades on the court, The Mental Lab was created to help families build mental toughness together, creating athletes who perform their best when it matters most.

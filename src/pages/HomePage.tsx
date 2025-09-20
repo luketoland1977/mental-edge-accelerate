@@ -1,6 +1,7 @@
 import React from 'react';
 import CallToActionButton from '@/components/CallToActionButton';
 import neuralBackground from '@/assets/neural-background.jpg';
+import { Trophy, Target, Dumbbell, Medal, Focus, Zap } from 'lucide-react';
 
 const HomePage: React.FC = () => {
   return (
@@ -49,14 +50,23 @@ const HomePage: React.FC = () => {
           <p className="text-lg text-slate-600 mb-12 max-w-2xl mx-auto">These are the challenges we hear from families every day</p>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-lg">
+              <div className="w-12 h-12 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Trophy className="w-6 h-6" />
+              </div>
               <h3 className="text-xl font-bold font-heading text-brand-blue mb-3">Your Athlete Has the Talent...</h3>
               <p className="text-slate-600">They dominate in practice, work harder than anyone, and have all the physical skills. But when it matters most - in competition - something holds them back.</p>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg">
+              <div className="w-12 h-12 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Target className="w-6 h-6" />
+              </div>
               <h3 className="text-xl font-bold font-heading text-brand-blue mb-3">You Want to Help...</h3>
               <p className="text-slate-600">As a parent, you see their potential and want to support their mental game. But everything you try seems to create more pressure instead of confidence.</p>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg">
+              <div className="w-12 h-12 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Dumbbell className="w-6 h-6" />
+              </div>
               <h3 className="text-xl font-bold font-heading text-brand-blue mb-3">Traditional Coaching Isn't Enough</h3>
               <p className="text-slate-600">Technical skills and physical training can only take them so far. At higher levels, mental fitness separates good athletes from great ones.</p>
             </div>
@@ -93,17 +103,23 @@ const HomePage: React.FC = () => {
           <p className="text-lg text-slate-600 mb-12 max-w-3xl mx-auto">Success in sports isn't just physical — it's deeply mental. We help athletes AND their families train the three essential skills to build a winning mindset:</p>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-lg">
-              <div className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
+              <div className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <Focus className="w-6 h-6" />
+              </div>
               <h3 className="text-xl font-bold font-heading text-brand-blue mb-3">Focus</h3>
               <p className="text-slate-600">Staying mentally sharp and present, even in high-pressure moments. We teach athletes how to maintain concentration while helping parents create distraction-free support.</p>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg">
-              <div className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
+              <div className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <Medal className="w-6 h-6" />
+              </div>
               <h3 className="text-xl font-bold font-heading text-brand-blue mb-3">Resilience</h3>
               <p className="text-slate-600">Learning to bounce back from failure and using setbacks as fuel for growth. Both athletes and parents learn healthy responses to disappointment and mistakes.</p>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg">
-              <div className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
+              <div className="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-6 h-6" />
+              </div>
               <h3 className="text-xl font-bold font-heading text-brand-blue mb-3">Energy Management</h3>
               <p className="text-slate-600">Transforming nervousness and anxiety into performance-ready energy. Families work together to channel pre-game nerves productively instead of fighting them.</p>
             </div>
