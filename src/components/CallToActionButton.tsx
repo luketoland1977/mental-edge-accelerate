@@ -21,7 +21,7 @@ const CallToActionButton: React.FC<CallToActionButtonProps> = ({
   type = "button"
 }) => {
   const primaryClasses = "bg-accent text-primary hover:bg-accent/90"; // Orange with Main Blue text
-  const secondaryClasses = "bg-primary text-white hover:bg-primary/90"; // Main blue with white text
+  const secondaryClasses = "bg-secondary text-primary hover:bg-secondary/90"; // Secondary Blue with Main Blue text
   const buttonClasses = `px-6 py-3 rounded-lg font-semibold text-base transition-colors duration-300 ${variant === 'primary' ? primaryClasses : secondaryClasses} ${className}`;
   if (to) {
     return <Link to={to} className={buttonClasses}>
