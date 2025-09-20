@@ -20,7 +20,7 @@ const MeetCoachCPage: React.FC = () => {
       </header>
 
       <Tabs defaultValue="approach" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-8">
+        <TabsList className="grid w-full grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1 sm:gap-2 mb-8 h-auto p-1">
           <TabsTrigger value="approach">Our Approach</TabsTrigger>
           <TabsTrigger value="philosophy">Why The Mental Lab?</TabsTrigger>
           <TabsTrigger value="results">The Transformation</TabsTrigger>
