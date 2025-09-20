@@ -21,11 +21,11 @@ const MeetCoachCPage: React.FC = () => {
 
       <Tabs defaultValue="approach" className="w-full">
         <TabsList className="grid w-full grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1 sm:gap-2 mb-8 h-auto p-1 border border-slate-900">
-          <TabsTrigger value="approach">Our Approach</TabsTrigger>
-          <TabsTrigger value="philosophy">Why The Mental Lab?</TabsTrigger>
-          <TabsTrigger value="results">The Transformation</TabsTrigger>
-          <TabsTrigger value="bio">Our Story</TabsTrigger>
-          <TabsTrigger value="education">Credentials</TabsTrigger>
+          <TabsTrigger value="approach" className="border border-slate-900">Our Approach</TabsTrigger>
+          <TabsTrigger value="philosophy" className="border border-slate-900">Why The Mental Lab?</TabsTrigger>
+          <TabsTrigger value="results" className="border border-slate-900">The Transformation</TabsTrigger>
+          <TabsTrigger value="bio" className="border border-slate-900">Our Story</TabsTrigger>
+          <TabsTrigger value="education" className="border border-slate-900">Credentials</TabsTrigger>
           {/* <TabsTrigger value="testimonials">Testimonials</TabsTrigger> */}
         </TabsList>
 
