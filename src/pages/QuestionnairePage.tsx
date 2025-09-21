@@ -1,11 +1,13 @@
 
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import emailjs from '@emailjs/browser';
 import CallToActionButton from '@/components/CallToActionButton';
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from '@/components/ui/button';
+import { useToast } from "@/hooks/use-toast";
 
 interface RatingQuestion {
   id: string;
@@ -58,11 +60,59 @@ type FormData = {
 const QuestionnairePage: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
   const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const { toast } = useToast();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data); // Process data here
-    setIsSubmitted(true);
-    window.scrollTo(0, 0); // Scroll to top to show submission message
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    setIsLoading(true);
+    
+    try {
+      // Calculate scores for each section
+      const effortScore = effortQuestions.reduce((sum, q) => sum + Number(data[q.id] || 0), 0);
+      const thoughtScore = thoughtQuestions.reduce((sum, q) => sum + Number(data[q.id] || 0), 0);
+      const attitudeScore = attitudeQuestions.reduce((sum, q) => sum + Number(data[q.id] || 0), 0);
+      const totalScore = effortScore + thoughtScore + attitudeScore;
+
+      // Format the data for email
+      const emailData = {
+        effort_score: effortScore,
+        thought_score: thoughtScore,
+        attitude_score: attitudeScore,
+        total_score: totalScore,
+        // Rating responses
+        effort_responses: effortQuestions.map(q => `${q.text}: ${data[q.id] || 'Not answered'}`).join('\n'),
+        thought_responses: thoughtQuestions.map(q => `${q.text}: ${data[q.id] || 'Not answered'}`).join('\n'),
+        attitude_responses: attitudeQuestions.map(q => `${q.text}: ${data[q.id] || 'Not answered'}`).join('\n'),
+        // Profile responses
+        profile_responses: profileQuestions.map(q => `${q.text}\nAnswer: ${data[q.id] || 'Not answered'}`).join('\n\n'),
+        submission_date: new Date().toLocaleString(),
+      };
+
+      // Send email using EmailJS
+      // You'll need to replace these with your actual EmailJS credentials
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        emailData,
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+      );
+
+      setIsSubmitted(true);
+      window.scrollTo(0, 0);
+      toast({
+        title: "Success!",
+        description: "Your questionnaire has been submitted successfully.",
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error",
+        description: "Failed to submit questionnaire. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
   
   const renderRatingSection = (title: string, questions: RatingQuestion[], sectionPrefix: string) => (
@@ -150,8 +200,12 @@ const QuestionnairePage: React.FC = () => {
         {renderProfileSection("Player Profile — Reflection", profileQuestions)}
 
         <div className="text-center mt-10">
-          <Button type="submit" className="bg-brand-blue text-white hover:bg-brand-blue-dark px-10 py-6 text-lg">
-            Submit Questionnaire
+          <Button 
+            type="submit" 
+            disabled={isLoading}
+            className="bg-brand-blue text-white hover:bg-brand-blue-dark px-10 py-6 text-lg disabled:opacity-50"
+          >
+            {isLoading ? 'Sending...' : 'Submit Questionnaire'}
           </Button>
         </div>
       </form>
