@@ -6,6 +6,7 @@ import CallToActionButton from '@/components/CallToActionButton';
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { Button } from '@/components/ui/button';
 import { useToast } from "@/hooks/use-toast";
 
@@ -53,7 +54,13 @@ const profileQuestions: ProfileQuestion[] = [
 ];
 
 type FormData = {
-  [key: string]: string | number;
+  // Contact fields
+  name: string;
+  email: string;
+  phone?: string;
+  comment?: string;
+  // Rating and profile questions
+  [key: string]: string | number | undefined;
 };
 
 
@@ -75,6 +82,12 @@ const QuestionnairePage: React.FC = () => {
 
       // Format the data for email
       const emailData = {
+        // Contact information
+        name: data.name || 'Not provided',
+        email: data.email || 'Not provided',
+        phone: data.phone || 'Not provided',
+        comment: data.comment || 'Not provided',
+        // Scores
         effort_score: effortScore,
         thought_score: thoughtScore,
         attitude_score: attitudeScore,
@@ -194,6 +207,73 @@ const QuestionnairePage: React.FC = () => {
       </header>
 
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-3xl mx-auto">
+        {/* Contact Information Section */}
+        <section className="mb-10 p-6 bg-white rounded-lg shadow">
+          <h2 className="text-2xl font-bold font-heading text-brand-blue mb-6">Contact Information</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <Label htmlFor="name" className="block text-md font-medium text-slate-700 mb-2">
+                Name *
+              </Label>
+              <Input
+                id="name"
+                type="text"
+                {...register("name", { required: "Name is required" })}
+                placeholder="Your full name"
+                className="w-full"
+              />
+              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name?.message as string}</p>}
+            </div>
+
+            <div>
+              <Label htmlFor="email" className="block text-md font-medium text-slate-700 mb-2">
+                Email *
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                {...register("email", { 
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Please enter a valid email address"
+                  }
+                })}
+                placeholder="your.email@example.com"
+                className="w-full"
+              />
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email?.message as string}</p>}
+            </div>
+
+            <div>
+              <Label htmlFor="phone" className="block text-md font-medium text-slate-700 mb-2">
+                Phone Number
+              </Label>
+              <Input
+                id="phone"
+                type="tel"
+                {...register("phone")}
+                placeholder="(555) 123-4567"
+                className="w-full"
+              />
+            </div>
+
+            <div className="md:col-span-2">
+              <Label htmlFor="comment" className="block text-md font-medium text-slate-700 mb-2">
+                Additional Comments
+              </Label>
+              <Textarea
+                id="comment"
+                {...register("comment")}
+                placeholder="Any additional information you'd like to share..."
+                rows={3}
+                className="w-full"
+              />
+            </div>
+          </div>
+        </section>
+
         {renderRatingSection("Effort", effortQuestions, "Section 1")}
         {renderRatingSection("Thought", thoughtQuestions, "Section 2")}
         {renderRatingSection("Attitude", attitudeQuestions, "Section 3")}
