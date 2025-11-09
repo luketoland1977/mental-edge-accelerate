@@ -14,7 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      questionnaire_responses: {
+        Row: {
+          attitude_responses: Json
+          attitude_score: number
+          comment: string | null
+          created_at: string
+          effort_responses: Json
+          effort_score: number
+          email: string
+          id: string
+          name: string
+          phone: string | null
+          profile_responses: Json
+          thought_responses: Json
+          thought_score: number
+          total_score: number
+          updated_at: string
+        }
+        Insert: {
+          attitude_responses?: Json
+          attitude_score: number
+          comment?: string | null
+          created_at?: string
+          effort_responses?: Json
+          effort_score: number
+          email: string
+          id?: string
+          name: string
+          phone?: string | null
+          profile_responses?: Json
+          thought_responses?: Json
+          thought_score: number
+          total_score: number
+          updated_at?: string
+        }
+        Update: {
+          attitude_responses?: Json
+          attitude_score?: number
+          comment?: string | null
+          created_at?: string
+          effort_responses?: Json
+          effort_score?: number
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          profile_responses?: Json
+          thought_responses?: Json
+          thought_score?: number
+          total_score?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
