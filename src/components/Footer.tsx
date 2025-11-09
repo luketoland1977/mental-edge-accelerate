@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
             <Instagram size={28} />
             <span className="sr-only">Instagram</span>
           </a>
-          <a href="mailto:info@thementallab.com" className="hover:text-white transition-colors">
+          <a href="mailto:info@mentallab.net" className="hover:text-white transition-colors">
             <Mail size={28} />
             <span className="sr-only">Email</span>
           </a>
