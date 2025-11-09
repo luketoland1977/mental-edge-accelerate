@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import emailjs from '@emailjs/browser';
+import { supabase } from '@/integrations/supabase/client';
 import CallToActionButton from '@/components/CallToActionButton';
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -80,47 +80,71 @@ const QuestionnairePage: React.FC = () => {
       const attitudeScore = attitudeQuestions.reduce((sum, q) => sum + Number(data[q.id] || 0), 0);
       const totalScore = effortScore + thoughtScore + attitudeScore;
 
-      // Format the data for email
-      const emailData = {
-        // Contact information
-        name: data.name || 'Not provided',
-        email: data.email || 'Not provided',
-        phone: data.phone || 'Not provided',
-        comment: data.comment || 'Not provided',
-        // Scores
+      // Format responses as objects for the database
+      const effortResponses: Record<string, number> = {};
+      const thoughtResponses: Record<string, number> = {};
+      const attitudeResponses: Record<string, number> = {};
+      const profileResponses: Record<string, string> = {};
+
+      effortQuestions.forEach(q => {
+        effortResponses[q.id] = Number(data[q.id] || 0);
+      });
+      
+      thoughtQuestions.forEach(q => {
+        thoughtResponses[q.id] = Number(data[q.id] || 0);
+      });
+      
+      attitudeQuestions.forEach(q => {
+        attitudeResponses[q.id] = Number(data[q.id] || 0);
+      });
+      
+      profileQuestions.forEach(q => {
+        profileResponses[q.id] = String(data[q.id] || '');
+      });
+
+      // Prepare data for edge function
+      const questionnaireData = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        comment: data.comment,
         effort_score: effortScore,
         thought_score: thoughtScore,
         attitude_score: attitudeScore,
         total_score: totalScore,
-        // Rating responses
-        effort_responses: effortQuestions.map(q => `${q.text}: ${data[q.id] || 'Not answered'}`).join('\n'),
-        thought_responses: thoughtQuestions.map(q => `${q.text}: ${data[q.id] || 'Not answered'}`).join('\n'),
-        attitude_responses: attitudeQuestions.map(q => `${q.text}: ${data[q.id] || 'Not answered'}`).join('\n'),
-        // Profile responses
-        profile_responses: profileQuestions.map(q => `${q.text}\nAnswer: ${data[q.id] || 'Not answered'}`).join('\n\n'),
-        submission_date: new Date().toLocaleString(),
+        effort_responses: effortResponses,
+        thought_responses: thoughtResponses,
+        attitude_responses: attitudeResponses,
+        profile_responses: profileResponses,
       };
 
-      // Send email using EmailJS
-      // You'll need to replace these with your actual EmailJS credentials
-      await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
-        emailData,
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
-      );
+      // Call edge function to save and send email
+      const { data: responseData, error } = await supabase.functions.invoke('send-questionnaire', {
+        body: questionnaireData,
+      });
+
+      if (error) {
+        console.error('Edge function error:', error);
+        throw error;
+      }
+
+      if (!responseData?.success) {
+        throw new Error(responseData?.error || 'Failed to submit questionnaire');
+      }
+
+      console.log('Questionnaire submitted successfully:', responseData);
 
       setIsSubmitted(true);
       window.scrollTo(0, 0);
       toast({
         title: "Success!",
-        description: "Your questionnaire has been submitted successfully.",
+        description: "Your questionnaire has been submitted successfully. Coach C will review your responses.",
       });
-    } catch (error) {
-      console.error('Error sending email:', error);
+    } catch (error: any) {
+      console.error('Error submitting questionnaire:', error);
       toast({
         title: "Error",
-        description: "Failed to submit questionnaire. Please try again.",
+        description: error.message || "Failed to submit questionnaire. Please try again.",
         variant: "destructive",
       });
     } finally {
