@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { supabase } from '@/integrations/supabase/client';
 import CallToActionButton from '@/components/CallToActionButton';
 import { Label } from "@/components/ui/label";
@@ -65,7 +65,7 @@ type FormData = {
 
 
 const QuestionnairePage: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+  const { register, handleSubmit, control, formState: { errors } } = useForm<FormData>();
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const { toast } = useToast();
@@ -160,14 +160,25 @@ const QuestionnairePage: React.FC = () => {
           <Label htmlFor={q.id} className="block text-md font-medium text-slate-700 mb-2">
             {index + 1}. {q.text}
           </Label>
-          <RadioGroup defaultValue="" id={q.id} {...register(q.id, { required: "This field is required" })} className="flex space-x-4">
-            {[1, 2, 3, 4, 5].map(value => (
-              <div key={value} className="flex items-center space-x-2">
-                <RadioGroupItem value={String(value)} id={`${q.id}-${value}`} />
-                <Label htmlFor={`${q.id}-${value}`}>{value}</Label>
-              </div>
-            ))}
-          </RadioGroup>
+          <Controller
+            name={q.id}
+            control={control}
+            rules={{ required: "This field is required" }}
+            render={({ field }) => (
+              <RadioGroup 
+                onValueChange={field.onChange} 
+                value={field.value as string}
+                className="flex space-x-4"
+              >
+                {[1, 2, 3, 4, 5].map(value => (
+                  <div key={value} className="flex items-center space-x-2">
+                    <RadioGroupItem value={String(value)} id={`${q.id}-${value}`} />
+                    <Label htmlFor={`${q.id}-${value}`}>{value}</Label>
+                  </div>
+                ))}
+              </RadioGroup>
+            )}
+          />
           {errors[q.id] && <p className="text-red-500 text-sm mt-1">{errors[q.id]?.message as string}</p>}
         </div>
       ))}
