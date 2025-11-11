@@ -50,12 +50,7 @@ const ServicesPage: React.FC = () => {
             </CardHeader>
             <CardContent className="flex-grow">
               <p className="text-slate-600 mb-4 leading-relaxed">{service.description}</p>
-              <ul className="space-y-2 text-sm text-slate-600">
-                {service.features.map((feature, index) => <li key={index} className="flex items-start">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>{feature}</span>
-                  </li>)}
-              </ul>
+              
             </CardContent>
             <CardFooter>
               <CallToActionButton href={service.calendlyLink} variant="primary" className="w-full">
