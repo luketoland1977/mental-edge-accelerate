@@ -52,10 +52,15 @@ const ServicesPage: React.FC = () => {
               <p className="text-slate-600 mb-4 leading-relaxed">{service.description}</p>
               <p className="text-sm text-muted-foreground italic">Available virtually or in person</p>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="flex-col gap-4">
               <CallToActionButton href={service.calendlyLink} variant="primary" className="w-full">
                 Book Now / Learn More
               </CallToActionButton>
+              <div className="text-center w-full space-y-1">
+                <p className="text-sm text-muted-foreground font-medium">Contact to book a package:</p>
+                <p className="text-sm text-foreground">📞 <a href="tel:8084287699" className="hover:text-accent transition-colors">808-428-7699</a></p>
+                <p className="text-sm text-foreground">✉️ <a href="mailto:info@mentallab.net" className="hover:text-accent transition-colors">info@mentallab.net</a></p>
+              </div>
             </CardFooter>
           </Card>)}
       </div>
