@@ -50,7 +50,7 @@ const ServicesPage: React.FC = () => {
             </CardHeader>
             <CardContent className="flex-grow">
               <p className="text-slate-600 mb-4 leading-relaxed">{service.description}</p>
-              
+              <p className="text-sm text-muted-foreground italic">Available virtually or in person</p>
             </CardContent>
             <CardFooter>
               <CallToActionButton href={service.calendlyLink} variant="primary" className="w-full">
