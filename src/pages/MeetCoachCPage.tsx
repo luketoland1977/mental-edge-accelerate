@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CallToActionButton from '@/components/CallToActionButton';
 import { Award, BookOpen, GraduationCap, Users, Zap, Target, Medal, Trophy } from 'lucide-react';
+import coachJasonImage from '@/assets/coach-jason-1.png';
 
 const MeetCoachCPage: React.FC = () => {
   const ctaButtons = (
@@ -15,6 +16,13 @@ const MeetCoachCPage: React.FC = () => {
   return (
     <div className="container mx-auto px-4 sm:px-6 py-12">
       <header className="text-center mb-12">
+        <div className="flex justify-center mb-8">
+          <img 
+            src={coachJasonImage} 
+            alt="Coach Jason with brain model" 
+            className="w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-full shadow-xl border-4 border-accent"
+          />
+        </div>
         <h1 className="text-4xl font-bold font-heading text-slate-800 mb-4">🧠 About The Mental Lab</h1>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">Discover the philosophy, experience, and transformative approach behind The Mental Lab.</p>
       </header>
