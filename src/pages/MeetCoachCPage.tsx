@@ -20,12 +20,12 @@ const MeetCoachCPage: React.FC = () => {
       <header className="text-center mb-12">
         <div className="flex justify-center mb-8 relative">
           {!imageLoaded && (
-            <div className="w-full max-w-lg h-[500px] bg-slate-200 animate-pulse rounded-lg shadow-xl" />
+            <div className="w-full max-w-md h-[400px] bg-slate-200 animate-pulse rounded-lg shadow-xl" />
           )}
           <img 
             src={coachJasonImage} 
             alt="Coach Jason with brain model" 
-            className={`w-full max-w-lg h-auto object-contain shadow-xl rounded-lg transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+            className={`w-full max-w-md h-auto object-contain shadow-xl rounded-lg transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
             loading="eager"
             fetchPriority="high"
             onLoad={() => setImageLoaded(true)}
