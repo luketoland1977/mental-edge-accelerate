@@ -53,7 +53,7 @@ const ServicesPage: React.FC = () => {
           variant="primary"
           className="text-lg px-8 py-6"
         >
-          Book Your Initial Package Here to Get Started
+          Schedule Your First Session
         </CallToActionButton>
       </div>
 
