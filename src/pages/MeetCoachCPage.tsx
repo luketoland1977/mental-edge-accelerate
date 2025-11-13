@@ -5,6 +5,8 @@ import { Award, BookOpen, GraduationCap, Users, Zap, Target, Medal, Trophy } fro
 import coachJasonImage from '@/assets/coach-jason-1.png';
 
 const MeetCoachCPage: React.FC = () => {
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+  
   const ctaButtons = (
     <div className="flex flex-col sm:flex-row items-start space-y-3 sm:space-y-0 sm:space-x-3 mt-8">
       <CallToActionButton to="/services#booking" variant="primary">Book a Free Consultation</CallToActionButton>
@@ -16,11 +18,17 @@ const MeetCoachCPage: React.FC = () => {
   return (
     <div className="container mx-auto px-4 sm:px-6 py-12">
       <header className="text-center mb-12">
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-8 relative">
+          {!imageLoaded && (
+            <div className="w-full max-w-lg h-[500px] bg-slate-200 animate-pulse rounded-lg shadow-xl" />
+          )}
           <img 
             src={coachJasonImage} 
             alt="Coach Jason with brain model" 
-            className="w-full max-w-lg h-auto object-contain shadow-xl rounded-lg"
+            className={`w-full max-w-lg h-auto object-contain shadow-xl rounded-lg transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+            loading="eager"
+            fetchPriority="high"
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
         <h1 className="text-4xl font-bold font-heading text-slate-800 mb-4">🧠 About The Mental Lab</h1>
