@@ -20,7 +20,7 @@ const MeetCoachCPage: React.FC = () => {
           <img 
             src={coachJasonImage} 
             alt="Coach Jason with brain model" 
-            className="w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-full shadow-xl border-4 border-accent"
+            className="w-full max-w-2xl h-auto object-contain shadow-xl rounded-lg"
           />
         </div>
         <h1 className="text-4xl font-bold font-heading text-slate-800 mb-4">🧠 About The Mental Lab</h1>
