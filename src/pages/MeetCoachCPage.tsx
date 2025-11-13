@@ -33,7 +33,7 @@ const MeetCoachCPage: React.FC = () => {
         <TabsContent value="approach" className="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold font-heading text-brand-blue mb-4">Our Approach: Building Mental Strength for Success</h2>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            In our coaching, we focus on the essential skills every athlete needs to develop a competitive mental edge:
+            In my coaching, I focus on the essential skills every athlete needs to develop a competitive mental edge:
           </p>
           <ul className="list-none space-y-4 mb-6">
             <li className="flex items-start"><Target className="w-6 h-6 text-orange-500 mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Focus:</strong> Training the mind to stay sharp, even in high-pressure situations.</span></li>
@@ -41,10 +41,10 @@ const MeetCoachCPage: React.FC = () => {
             <li className="flex items-start"><Zap className="w-6 h-6 text-orange-500 mr-3 mt-1 flex-shrink-0" /><span><strong className="text-slate-800">Energy Management:</strong> Converting nervousness and anxiety into performance-enhancing energy.</span></li>
           </ul>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            These are skills we've been taught, but more importantly, they are skills we've applied on the field with athletes who have gone on to achieve success. Our goal is to help athletes master their mental game, so they can reach their fullest potential.
+            These are skills I've been taught, but more importantly, they are skills I've applied on the field with athletes who have gone on to achieve success. My goal is to help athletes master their mental game, so they can reach their fullest potential.
           </p>
           <p className="text-slate-700 leading-relaxed">
-            We've worked with athletes of all ages — from middle school players to collegiate athletes, and with coaches and parents, too. The mental game is not just for athletes, but for everyone around them.
+            I've worked with athletes of all ages — from middle school players to collegiate athletes, and with coaches and parents, too. The mental game is not just for athletes, but for everyone around them.
           </p>
           {ctaButtons}
         </TabsContent>
@@ -53,7 +53,7 @@ const MeetCoachCPage: React.FC = () => {
           <h2 className="text-2xl font-bold font-heading text-brand-blue mb-4">Why Choose The Mental Lab? Our Philosophy – What Sets Us Apart</h2>
           <h3 className="text-xl font-semibold font-heading text-slate-700 mb-3">Mindset is Everything</h3>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            What sets us apart is our combination of hands-on coaching experience and a solid foundation in sport psychology. We understand the unique pressures athletes face and the mental blocks that can hinder their performance. More importantly, we know how to guide athletes through those challenges and unlock the mental strength they already possess.
+            What sets me apart is my combination of hands-on coaching experience and a solid foundation in sport psychology. I understand the unique pressures athletes face and the mental blocks that can hinder their performance. More importantly, I know how to guide athletes through those challenges and unlock the mental strength they already possess.
           </p>
           <p className="text-slate-700 leading-relaxed">
             When you work with The Mental Lab, you'll gain tools that will help you stay focused, confident, and resilient, both on the field and in life.
@@ -65,7 +65,7 @@ const MeetCoachCPage: React.FC = () => {
           <h2 className="text-2xl font-bold font-heading text-brand-blue mb-4">The Transformation – Results You Can Expect</h2>
           <h3 className="text-xl font-semibold font-heading text-slate-700 mb-3">Transform Your Mindset, Transform Your Game</h3>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            It's not just about building the perfect pre-game routine. It's about mastering your mind to stay focused under pressure, bounce back from mistakes, and perform at your best when it matters most. In our coaching, you'll learn:
+            It's not just about building the perfect pre-game routine. It's about mastering your mind to stay focused under pressure, bounce back from mistakes, and perform at your best when it matters most. In my coaching, you'll learn:
           </p>
           <ul className="list-disc list-inside space-y-2 text-slate-700 mb-4 pl-4">
             <li>Mental preparation strategies</li>
@@ -85,7 +85,7 @@ const MeetCoachCPage: React.FC = () => {
             The Mental Lab was founded by coach Jason Cartright who has been immersed in the world of sports for over 20 years — as a college basketball player, assistant high school coach, and middle school head coach.
           </p>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            Throughout our coaching history, we saw how mental blocks often stood between athletes and their potential. We've coached:
+            Throughout my coaching history, I saw how mental blocks often stood between athletes and their potential. I've coached:
           </p>
           <ul className="list-disc list-inside space-y-2 text-slate-700 mb-4 pl-4">
             <li>Boys' basketball teams to three straight championship appearances</li>
@@ -93,10 +93,10 @@ const MeetCoachCPage: React.FC = () => {
             <li>Middle schoolers to multiple finals in just three years</li>
           </ul>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            But it was during these moments of competition that we realized something deeper — the need to coach the mental game just as much as the physical one. <strong>And we noticed that the athletes who thrived had parents who knew how to support, not pressure.</strong>
+            But it was during these moments of competition that I realized something deeper — the need to coach the mental game just as much as the physical one. <strong>And I noticed that the athletes who thrived had parents who knew how to support, not pressure.</strong>
           </p>
           <p className="text-slate-700 leading-relaxed">
-            That passion led to earning a Master's in Sport Psychology at the prestigious John F. Kennedy University (now National University). Since then, we've helped athletes in sports like basketball, golf, tennis, baseball, and softball develop the mindset they need to thrive — <strong>while teaching their parents how to be part of the solution.</strong>
+            That passion led to earning a Master's in Sport Psychology at the prestigious John F. Kennedy University (now National University). Since then, I've helped athletes in sports like basketball, golf, tennis, baseball, and softball develop the mindset they need to thrive — <strong>while teaching their parents how to be part of the solution.</strong>
           </p>
           {ctaButtons}
         </TabsContent>
