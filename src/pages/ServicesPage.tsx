@@ -29,6 +29,14 @@ const services = [{
   calendlyLink: "#",
   // Placeholder
   icon: Trophy
+}, {
+  title: "20-Session Elite Package",
+  price: "$1999",
+  duration: "20x 50-minute sessions",
+  description: "Our most comprehensive mental training package for serious athletes committed to sustained excellence. This program provides extended support for complete mental performance transformation with ongoing accountability and advanced mental skills development.",
+  features: ["Premium support with extended engagement", "Custom mental training plan", "Progress tracking and adjustments throughout the program", "***AS PART OF BOOKING TO BE COMPLETE CLIENT NEEDS TO FILL OUT QUESTIONNAIRE FORM***"],
+  calendlyLink: "#",
+  icon: CheckCircle
 }];
 const ServicesPage: React.FC = () => {
   return <div className="container mx-auto px-4 sm:px-6 py-12">
