@@ -3,33 +3,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CallToActionButton from '@/components/CallToActionButton';
 import { Award, BookOpen, GraduationCap, Users, Zap, Target, Medal, Trophy } from 'lucide-react';
 import coachJasonImage from '@/assets/coach-jason-1.png';
-
 const MeetCoachCPage: React.FC = () => {
   const [imageLoaded, setImageLoaded] = React.useState(false);
-  
-  const ctaButtons = (
-    <div className="flex flex-col sm:flex-row items-start space-y-3 sm:space-y-0 sm:space-x-3 mt-8">
+  const ctaButtons = <div className="flex flex-col sm:flex-row items-start space-y-3 sm:space-y-0 sm:space-x-3 mt-8">
       <CallToActionButton to="/services#booking" variant="primary">Book a Free Consultation</CallToActionButton>
       <CallToActionButton to="/services" variant="secondary">Explore Services</CallToActionButton>
       <CallToActionButton to="/questionnaire" variant="primary">Questionnaire</CallToActionButton>
-    </div>
-  );
-
-  return (
-    <div className="container mx-auto px-4 sm:px-6 py-12">
+    </div>;
+  return <div className="container mx-auto px-4 sm:px-6 py-12">
       <header className="text-center mb-12">
         <div className="flex justify-center mb-8 relative">
-          {!imageLoaded && (
-            <div className="w-full max-w-md h-[400px] bg-slate-200 animate-pulse rounded-lg shadow-xl" />
-          )}
-          <img 
-            src={coachJasonImage} 
-            alt="Coach Jason with brain model" 
-            className={`w-full max-w-md h-auto object-contain shadow-xl rounded-lg transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
-            loading="eager"
-            fetchPriority="high"
-            onLoad={() => setImageLoaded(true)}
-          />
+          {!imageLoaded && <div className="w-full max-w-md h-[400px] bg-slate-200 animate-pulse rounded-lg shadow-xl" />}
+          <img src={coachJasonImage} alt="Coach Jason with brain model" className={`w-full max-w-md h-auto object-contain shadow-xl rounded-lg transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`} loading="eager" fetchPriority="high" onLoad={() => setImageLoaded(true)} />
         </div>
         <h1 className="text-4xl font-bold font-heading text-slate-800 mb-4">🧠 About The Mental Lab</h1>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">Discover the philosophy, experience, and transformative approach behind The Mental Lab.</p>
@@ -97,7 +82,7 @@ const MeetCoachCPage: React.FC = () => {
         <TabsContent value="bio" className="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold font-heading text-brand-blue mb-4">About The Mental Lab: Our Journey</h2>
           <p className="text-slate-700 mb-4 leading-relaxed">
-            The Mental Lab was founded by a coach who has been immersed in the world of sports for over 20 years — as a college basketball player, assistant high school coach, and middle school head coach.
+            The Mental Lab was founded by coach Jason Cartright who has been immersed in the world of sports for over 20 years — as a college basketball player, assistant high school coach, and middle school head coach.
           </p>
           <p className="text-slate-700 mb-4 leading-relaxed">
             Throughout our coaching history, we saw how mental blocks often stood between athletes and their potential. We've coached:
@@ -134,10 +119,8 @@ const MeetCoachCPage: React.FC = () => {
           <h2 className="text-2xl font-bold font-heading text-brand-blue mb-4">Client Success Stories</h2>
           <p className="text-slate-700">Testimonials will be added here soon.</p>
           {ctaButtons}
-        </TabsContent> */}
+         </TabsContent> */}
       </Tabs>
-    </div>
-  );
+    </div>;
 };
-
 export default MeetCoachCPage;
