@@ -47,6 +47,16 @@ const ServicesPage: React.FC = () => {
         </p>
       </header>
 
+      <div className="text-center mb-12">
+        <CallToActionButton 
+          href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2FLR_8sv19-6hD7RZzYLyxbY6RBEvHFjlAm9pQl3-F8mS4VAUKBTzJQN85Jr_WGNHurGBcaWEJ" 
+          variant="primary"
+          className="text-lg px-8 py-6"
+        >
+          Book Your Initial Package Here to Get Started
+        </CallToActionButton>
+      </div>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {services.map(service => <Card key={service.title} className="flex flex-col">
             <CardHeader>
