@@ -24,10 +24,18 @@ const CallToActionButton: React.FC<CallToActionButtonProps> = ({
   const secondaryClasses = "bg-secondary text-primary hover:bg-secondary/90"; // Secondary Blue with Main Blue text
   const buttonClasses = `px-6 py-3 rounded-lg font-semibold text-base transition-colors duration-300 ${variant === 'primary' ? primaryClasses : secondaryClasses} ${className}`;
   if (to) {
-    return;
+    return <Link to={to}>
+      <Button className={buttonClasses} variant={variant === 'primary' ? 'default' : 'outline'}>
+        {children}
+      </Button>
+    </Link>;
   }
   if (href) {
-    return;
+    return <a href={href} target="_blank" rel="noopener noreferrer">
+      <Button className={buttonClasses} variant={variant === 'primary' ? 'default' : 'outline'}>
+        {children}
+      </Button>
+    </a>;
   }
   return <Button type={type} onClick={onClick} className={buttonClasses} variant={variant === 'primary' ? 'default' : 'outline'}>
       {children}
