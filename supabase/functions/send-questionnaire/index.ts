@@ -24,6 +24,49 @@ interface QuestionnaireData {
   thought_responses: Record<string, number>;
   attitude_responses: Record<string, number>;
   profile_responses: Record<string, string>;
+  submission_time?: number;
+}
+
+// In-memory rate limiting (resets when function restarts)
+const submissionTracker = new Map<string, number[]>();
+const RATE_LIMIT_WINDOW = 3600000; // 1 hour in milliseconds
+const MAX_SUBMISSIONS_PER_HOUR = 3;
+
+// Input validation functions
+function validateEmail(email: string): boolean {
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  return emailRegex.test(email) && email.length <= 255;
+}
+
+function validateName(name: string): boolean {
+  const nameRegex = /^[a-zA-Z\s'-]+$/;
+  return nameRegex.test(name) && name.length > 0 && name.length <= 100;
+}
+
+function validatePhone(phone: string | undefined): boolean {
+  if (!phone) return true; // Optional field
+  const phoneRegex = /^[0-9\s\-\(\)\+]+$/;
+  return phoneRegex.test(phone) && phone.length <= 20;
+}
+
+function checkRateLimit(identifier: string): boolean {
+  const now = Date.now();
+  const submissions = submissionTracker.get(identifier) || [];
+  
+  // Remove old submissions outside the time window
+  const recentSubmissions = submissions.filter(
+    time => now - time < RATE_LIMIT_WINDOW
+  );
+  
+  if (recentSubmissions.length >= MAX_SUBMISSIONS_PER_HOUR) {
+    return false; // Rate limit exceeded
+  }
+  
+  // Add current submission
+  recentSubmissions.push(now);
+  submissionTracker.set(identifier, recentSubmissions);
+  
+  return true;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -34,28 +77,87 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const data: QuestionnaireData = await req.json();
-    console.log("Received questionnaire submission for:", data.email);
+    
+    // Get client IP for rate limiting
+    const clientIP = req.headers.get('x-forwarded-for') || 
+                     req.headers.get('x-real-ip') || 
+                     'unknown';
+    
+    console.log("Received questionnaire submission from IP:", clientIP);
+    
+    // Rate limiting check
+    if (!checkRateLimit(clientIP)) {
+      console.warn(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Too many submissions. Please try again later." 
+        }),
+        {
+          status: 429,
+          headers: { 
+            "Content-Type": "application/json", 
+            ...corsHeaders 
+          },
+        }
+      );
+    }
+    
+    // Server-side input validation
+    if (!validateName(data.name)) {
+      throw new Error("Invalid name format");
+    }
+    
+    if (!validateEmail(data.email)) {
+      throw new Error("Invalid email format");
+    }
+    
+    if (!validatePhone(data.phone)) {
+      throw new Error("Invalid phone number format");
+    }
+    
+    // Validate comment length
+    if (data.comment && data.comment.length > 2000) {
+      throw new Error("Comment is too long");
+    }
+    
+    // Validate scores are within expected range
+    if (data.effort_score < 0 || data.effort_score > 25 ||
+        data.thought_score < 0 || data.thought_score > 25 ||
+        data.attitude_score < 0 || data.attitude_score > 25) {
+      throw new Error("Invalid scores detected");
+    }
+    
+    // Validate profile responses length
+    for (const response of Object.values(data.profile_responses)) {
+      if (response.length > 1000) {
+        throw new Error("Profile response is too long");
+      }
+    }
 
     // Initialize Supabase client
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+    // Trim and sanitize inputs
+    const sanitizedData = {
+      name: data.name.trim(),
+      email: data.email.trim().toLowerCase(),
+      phone: data.phone?.trim() || null,
+      comment: data.comment?.trim() || null,
+      effort_score: data.effort_score,
+      thought_score: data.thought_score,
+      attitude_score: data.attitude_score,
+      total_score: data.total_score,
+      effort_responses: data.effort_responses,
+      thought_responses: data.thought_responses,
+      attitude_responses: data.attitude_responses,
+      profile_responses: data.profile_responses,
+    };
+
     // Save to database
     const { data: dbData, error: dbError } = await supabase
       .from("questionnaire_responses")
-      .insert({
-        name: data.name,
-        email: data.email,
-        phone: data.phone || null,
-        comment: data.comment || null,
-        effort_score: data.effort_score,
-        thought_score: data.thought_score,
-        attitude_score: data.attitude_score,
-        total_score: data.total_score,
-        effort_responses: data.effort_responses,
-        thought_responses: data.thought_responses,
-        attitude_responses: data.attitude_responses,
-        profile_responses: data.profile_responses,
-      })
+      .insert(sanitizedData)
       .select()
       .single();
 
@@ -112,7 +214,10 @@ const handler = async (req: Request): Promise<Response> => {
       .join("");
 
     const profileResponsesHtml = Object.entries(data.profile_responses)
-      .map(([key, value], idx) => `<div style="margin-bottom: 20px;"><strong>Q${idx + 16}:</strong> ${profileQuestions[idx]}<br/><strong>Response:</strong> ${value}</div>`)
+      .map(([key, value], idx) => {
+        const sanitizedValue = String(value).substring(0, 1000); // Truncate for safety
+        return `<div style="margin-bottom: 20px;"><strong>Q${idx + 16}:</strong> ${profileQuestions[idx]}<br/><strong>Response:</strong> ${sanitizedValue}</div>`;
+      })
       .join("");
 
     const emailHtml = `
@@ -120,10 +225,10 @@ const handler = async (req: Request): Promise<Response> => {
       
       <h2>Contact Information</h2>
       <ul>
-        <li><strong>Name:</strong> ${data.name}</li>
-        <li><strong>Email:</strong> ${data.email}</li>
-        <li><strong>Phone:</strong> ${data.phone || "Not provided"}</li>
-        <li><strong>Comments:</strong> ${data.comment || "None"}</li>
+        <li><strong>Name:</strong> ${sanitizedData.name}</li>
+        <li><strong>Email:</strong> ${sanitizedData.email}</li>
+        <li><strong>Phone:</strong> ${sanitizedData.phone || "Not provided"}</li>
+        <li><strong>Comments:</strong> ${sanitizedData.comment || "None"}</li>
       </ul>
 
       <h2>Score Summary</h2>
@@ -148,13 +253,14 @@ const handler = async (req: Request): Promise<Response> => {
 
       <hr/>
       <p style="color: #666; font-size: 12px;">Submitted at: ${new Date().toLocaleString()}</p>
+      <p style="color: #666; font-size: 12px;">Client IP: ${clientIP}</p>
     `;
 
     // Send email using Resend
     const emailResponse = await resend.emails.send({
       from: "Mental Lab <onboarding@resend.dev>",
       to: ["coachjason@mentallab.net"],
-      subject: `New Questionnaire Submission from ${data.name}`,
+      subject: `New Questionnaire Submission from ${sanitizedData.name}`,
       html: emailHtml,
     });
 

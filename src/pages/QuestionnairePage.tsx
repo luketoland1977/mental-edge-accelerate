@@ -59,6 +59,8 @@ type FormData = {
   email: string;
   phone?: string;
   comment?: string;
+  // Honeypot field for spam detection
+  website?: string;
   // Rating and profile questions
   [key: string]: string | number | undefined;
 };
@@ -72,6 +74,17 @@ const QuestionnairePage: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsLoading(true);
+    
+    // Honeypot check - if filled, it's likely a bot
+    if (data.website) {
+      toast({
+        title: "Error",
+        description: "Invalid submission detected. Please try again.",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
     
     try {
       // Calculate scores for each section
@@ -116,6 +129,7 @@ const QuestionnairePage: React.FC = () => {
         thought_responses: thoughtResponses,
         attitude_responses: attitudeResponses,
         profile_responses: profileResponses,
+        submission_time: Date.now(), // Add timestamp for rate limiting
       };
 
       // Call edge function to save and send email
@@ -195,10 +209,17 @@ const QuestionnairePage: React.FC = () => {
           </Label>
           <Textarea
             id={q.id}
-            {...register(q.id, { required: "This field is required" })}
+            {...register(q.id, { 
+              required: "This field is required",
+              maxLength: {
+                value: 1000,
+                message: "Response must be less than 1000 characters"
+              }
+            })}
             placeholder={q.placeholder}
             rows={4}
             className="w-full p-2 border border-gray-300 rounded-md focus:ring-brand-blue focus:border-brand-blue"
+            maxLength={1000}
           />
           {errors[q.id] && <p className="text-red-500 text-sm mt-1">{errors[q.id]?.message as string}</p>}
         </div>
@@ -247,6 +268,18 @@ const QuestionnairePage: React.FC = () => {
           <h2 className="text-2xl font-bold font-heading text-brand-blue mb-6">Contact Information</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Honeypot field - hidden from users, catches bots */}
+            <div style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
+              <Label htmlFor="website">Website (leave blank)</Label>
+              <Input
+                id="website"
+                type="text"
+                {...register("website")}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
             <div>
               <Label htmlFor="name" className="block text-md font-medium text-slate-700 mb-2">
                 Name *
@@ -254,9 +287,20 @@ const QuestionnairePage: React.FC = () => {
               <Input
                 id="name"
                 type="text"
-                {...register("name", { required: "Name is required" })}
+                {...register("name", { 
+                  required: "Name is required",
+                  maxLength: {
+                    value: 100,
+                    message: "Name must be less than 100 characters"
+                  },
+                  pattern: {
+                    value: /^[a-zA-Z\s'-]+$/,
+                    message: "Name can only contain letters, spaces, hyphens, and apostrophes"
+                  }
+                })}
                 placeholder="Your full name"
                 className="w-full"
+                maxLength={100}
               />
               {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name?.message as string}</p>}
             </div>
@@ -270,6 +314,10 @@ const QuestionnairePage: React.FC = () => {
                 type="email"
                 {...register("email", { 
                   required: "Email is required",
+                  maxLength: {
+                    value: 255,
+                    message: "Email must be less than 255 characters"
+                  },
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                     message: "Please enter a valid email address"
@@ -277,6 +325,7 @@ const QuestionnairePage: React.FC = () => {
                 })}
                 placeholder="your.email@example.com"
                 className="w-full"
+                maxLength={255}
               />
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email?.message as string}</p>}
             </div>
@@ -288,10 +337,21 @@ const QuestionnairePage: React.FC = () => {
               <Input
                 id="phone"
                 type="tel"
-                {...register("phone")}
+                {...register("phone", {
+                  maxLength: {
+                    value: 20,
+                    message: "Phone number must be less than 20 characters"
+                  },
+                  pattern: {
+                    value: /^[0-9\s\-\(\)\+]+$/,
+                    message: "Please enter a valid phone number"
+                  }
+                })}
                 placeholder="(555) 123-4567"
                 className="w-full"
+                maxLength={20}
               />
+              {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone?.message as string}</p>}
             </div>
 
             <div className="md:col-span-2">
@@ -300,11 +360,18 @@ const QuestionnairePage: React.FC = () => {
               </Label>
               <Textarea
                 id="comment"
-                {...register("comment")}
+                {...register("comment", {
+                  maxLength: {
+                    value: 2000,
+                    message: "Comment must be less than 2000 characters"
+                  }
+                })}
                 placeholder="Any additional information you'd like to share..."
                 rows={3}
                 className="w-full"
+                maxLength={2000}
               />
+              {errors.comment && <p className="text-red-500 text-sm mt-1">{errors.comment?.message as string}</p>}
             </div>
           </div>
         </section>
