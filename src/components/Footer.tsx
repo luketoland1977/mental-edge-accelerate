@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
            </CallToActionButton>
         </div>
         <div className="flex justify-center space-x-6 mb-6">
-          <a href="https://instagram.com/thementallab" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+          <a href="https://instagram.com/Coach_cs_mentalgains" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
             <Instagram size={28} />
             <span className="sr-only">Instagram</span>
           </a>
